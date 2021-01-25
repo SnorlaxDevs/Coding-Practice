@@ -6,9 +6,13 @@ int array_rotated(vector<int> nums){
     int start = 0;
     int end = n - 1;
     while(start <= end){
+        if(nums[start] < nums[end]){
+            return start;
+        }
         int mid = start + (end - start)/2;
         int next = (mid + 1) % n;
         int prev = (mid - 1 + n) % n;
+        // cout << next << " ** " << prev << endl; 
         if (nums[mid] <= nums[next] && nums[mid] <= nums[prev]){
             return mid;
         }else if (nums[start] <= nums[mid]){
@@ -21,7 +25,7 @@ int array_rotated(vector<int> nums){
 }
 
 int main(){
-    vector<int> nums = {15, 18, 2, 3, 6, 12};
+    vector<int> nums = {4,5,6,7,0,1,2};
     cout << array_rotated(nums);
     return 0;
 }
